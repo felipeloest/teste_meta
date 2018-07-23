@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Meta.Context\Meta.Context.csproj" />
     <ProjectReference Include="..\Meta\Meta.csproj" />
   </ItemGroup>
 

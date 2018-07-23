@@ -1,45 +1,73 @@
-﻿using Meta.Domain;
+﻿using Meta.Context;
+using Meta.Domain;
 using Meta.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Meta.Data.Repositories
 {
     public class VehicleRepository : IVehicleRepository
     {
-        public Vehicle Create(Vehicle item)
+        private readonly MetaContext Context;
+
+        public VehicleRepository(MetaContext context)
         {
-            throw new NotImplementedException();
+            this.Context = context;
         }
 
-        public void Delete(Guid id)
+        public Vehicle Create(Vehicle item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+                throw new ArgumentNullException("item");
+
+            Context.Vehicle.Add(item);
+            Context.SaveChanges();
+
+            return item;
+        }
+
+        public void Delete(Vehicle item)
+        {
+            if (item == null)
+                throw new ArgumentNullException("item");
+
+            Context.Vehicle.Remove(item);
+            Context.SaveChanges();
         }
 
         public Vehicle Edit(Vehicle item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+                throw new ArgumentNullException("item");
+
+            Context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+            Context.SaveChanges();
+
+            return item;
         }
 
         public Vehicle Find(Guid id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new ArgumentNullException("id");
+
+            var item = Context.Vehicle.Find(id);
+            return item;
         }
 
         public Vehicle Find(string series, uint number)
         {
-            throw new NotImplementedException();
+            var query = Context.Vehicle.Where(x => x.Chassis.Series == series && x.Chassis.Number == number);
+            var item = query.SingleOrDefault();
+
+            return item;
         }
 
         public IEnumerable<Vehicle> List()
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Vehicle> List(string chassis)
-        {
-            throw new NotImplementedException();
+            var items = Context.Vehicle.ToList();
+            return items;
         }
     }
 }

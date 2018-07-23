@@ -48,7 +48,7 @@ namespace Meta.Application.Services
                 if (item == null)
                     throw new KeyNotFoundException(string.Format("Vehicle not foud! Id{0}", id));
 
-                this.VehicleRepository.Delete(item.Id);
+                this.VehicleRepository.Delete(item);
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@ namespace Meta.Application.Services
             {
                 var item = this.VehicleRepository.Find(id);
                 if (item == null)
-                    throw new KeyNotFoundException(string.Format("Vehicle not foud! Id{0}", id));
+                    throw new KeyNotFoundException(string.Format("Vehicle not foud! Id: {0}", id));
 
                 item.Color = color;
 

@@ -8,8 +8,11 @@ namespace Meta.Console
 {
     class Program
     {
+        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         static void Main(string[] args)
         {
+
         }
     }
 }

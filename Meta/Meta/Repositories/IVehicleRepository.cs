@@ -8,12 +8,11 @@ namespace Meta.Repositories
     public interface IVehicleRepository
     {
         Vehicle Create(Vehicle item);
-        void Delete(Guid id);
+        void Delete(Vehicle item);
         Vehicle Edit(Vehicle item);
         Vehicle Find(Guid id);
         Vehicle Find(string series, uint number);
 
         IEnumerable<Vehicle> List();
-        IEnumerable<Vehicle> List(string chassis);
     }
 }
