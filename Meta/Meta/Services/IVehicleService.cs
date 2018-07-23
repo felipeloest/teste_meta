@@ -7,12 +7,11 @@ namespace Meta.Services
 {
     public interface IVehicleService
     {
-        Vehicle Create();
-        void Delete();
-        Vehicle Edit();
-        Vehicle Find();
+        Vehicle Create(VehicleType type, string color, string series, uint number);
+        void Delete(Guid id);
+        Vehicle Edit(Guid id, string color);
+        Vehicle Find(string series, uint number);
 
         IEnumerable<Vehicle> List();
-        IEnumerable<Vehicle> List(string chassis);
     }
 }

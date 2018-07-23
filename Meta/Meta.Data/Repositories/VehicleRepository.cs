@@ -7,22 +7,27 @@ namespace Meta.Data.Repositories
 {
     public class VehicleRepository : IVehicleRepository
     {
-        public Vehicle Create()
+        public Vehicle Create(Vehicle item)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Vehicle Edit()
+        public Vehicle Edit(Vehicle item)
         {
             throw new NotImplementedException();
         }
 
-        public Vehicle Find()
+        public Vehicle Find(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Vehicle Find(string series, uint number)
         {
             throw new NotImplementedException();
         }
